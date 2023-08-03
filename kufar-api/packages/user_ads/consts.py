@@ -1,0 +1,6 @@
+ACTIVATE_AD = '/account_activate_ad.json'
+DELETE_AD = '/account_delete_ad.json'
+GET_MY_ADS = '/account_get_published_ads.json'
+GET_MY_ADS_COUNT = '/account_get_published_ads_count.json'
+PROLONG_AD = '/account_prolong_ad.json'
+GET_COUNTERS = '/account_get_counters.json'

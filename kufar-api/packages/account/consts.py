@@ -1,0 +1,1 @@
+GET_CURRENT_ACCOUNT = '/accounts-mngt/v1/account'
