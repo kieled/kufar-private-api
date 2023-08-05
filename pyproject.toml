@@ -1,9 +1,23 @@
 [tool.poetry]
-name = "kufar-api"
+name = "kufar"
 version = "0.1.0"
 description = ""
 authors = ["Kiel Ed <kieledssh@gmail.com>"]
 readme = "README.md"
+keywords = ["kufar", "kufar-api", "kufar_api"]
+packages = [
+  { include = "kufar" }
+]
+
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: Implementation :: PyPy",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Intended Audience :: Developers",
+]
 
 [tool.poetry.dependencies]
 python = "^3.11"
@@ -21,10 +35,9 @@ build-backend = "poetry.core.masonry.api"
 
 
 [tool.ruff]
-select = ["E", "F"]
-ignore = []
-fixable = ["ALL"]
-unfixable = []
 line-length = 112
-dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
 target-version = "py311"
+ignore = ["E402", "F401", "F403"]
+
+[tool.ruff.isort]
+known-third-party = ["kufar"]

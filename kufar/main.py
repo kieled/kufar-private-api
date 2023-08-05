@@ -1,10 +1,10 @@
-# Kufar Private API
-
-This library is result of researching around Kufar Mobile App. Project is still development. But you can use it now. Below you can see some examples of using it.
-
-```python
-from kufar import KufarAPI, State, Requster
 import asyncio
+
+from _instance import KufarApi
+from utils.requester import Requester
+from utils.state import State
+
+
 
 async def main():
     state = State('state.conf')
@@ -13,10 +13,7 @@ async def main():
         api = KufarApi(client, state)
         await api.init()
         await api.authenticate("email", "password")
-
-        # Get current account ads count
         ads_count = await api.user_ads.get_my_ads_count()
-        print(ads_count)
 
         # Get Current Account Info
         current_account = await api.account.get_current_account()
@@ -29,8 +26,8 @@ async def main():
         
         # Get all categories
         categories = await api.categories.get_categories()
- 
+        
 
 
-asyncio.run(main())
-```
+if __name__ == "__main__":
+    asyncio.run(main())

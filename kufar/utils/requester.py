@@ -4,6 +4,7 @@ from typing import Literal, Self
 from aiohttp import ClientSession, ContentTypeError
 
 from .signature_decoder import decode_signature
+from base import consts
 
 
 class Requester:
@@ -12,9 +13,9 @@ class Requester:
     __headers: dict[str, str]
     __hash: str = ''
 
-    def __init__(self, headers: dict[str, str]):
+    def __init__(self):
         self.__base_url = ''
-        self.__headers = headers
+        self.__headers = consts.BASE_HEADERS
 
     async def __aenter__(self) -> Self:
             self.__client = ClientSession(
