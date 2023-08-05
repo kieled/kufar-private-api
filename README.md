@@ -1,7 +1,14 @@
 # Kufar Private API
 
-This library is result of researching around Kufar Mobile App. Project is still development. But you can use it now. Below you can see some examples of using it.
+This library is result of researching around Kufar Mobile App. Project is still development. But you can use it now.
 
+### Installing:
+You can install this library using command:
+```bash
+pip install kufar 
+```
+
+### Example:
 ```python
 from kufar import KufarAPI, State, Requster
 import asyncio
