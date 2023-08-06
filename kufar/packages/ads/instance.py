@@ -1,4 +1,5 @@
-from base import BaseService
+from kufar.base import BaseService
+from kufar.utils.auth import auth_required
 
 from . import consts
 from .schemas import (
@@ -10,33 +11,40 @@ from .schemas import (
 
 
 class AdsService(BaseService):
-    async def get_advert(self, ad_id: int, lang: str = 'ru') -> GetAdvertResponse:
+    async def get_advert(self, ad_id: int, lang: str = "ru") -> GetAdvertResponse:
         return await self.client.get(
             consts.GET_ADVERT.format(ad_id=ad_id),
             headers=consts.SEGMENTATION_HEADER,
-            params={'lang': lang}
+            params={"lang": lang},
         )
 
-    async def get_advert_by_list_id(self, msgi: str, size: str, lang: str = 'ru') -> GetAdvertByListIdResponse:
+    async def get_advert_by_list_id(
+        self, msgi: str, size: str, lang: str = "ru"
+    ) -> GetAdvertByListIdResponse:
         return await self.client.get(
             consts.SEARCH_ADVERTS,
             headers=consts.SEGMENTATION_HEADER_WITH_HACK,
-            params={
-                'msgi': msgi,
-                'size': size,
-                'lang': lang
-            }
+            params={"msgi": msgi, "size": size, "lang": lang},
         )
 
     async def get_ad_phone(self, ad_id: int) -> GetPhoneResponse:
         return await self.client.get(consts.GET_PHONE.format(ad_id=ad_id))
 
-    async def user_search_adverts(self, size: int, cursor: str | None = None) -> GetUserSearchAdvertsResponse:
+    @auth_required
+    async def user_search_adverts(
+        self, size: int, cursor: str | None = None
+    ) -> GetUserSearchAdvertsResponse:
         return await self.client.get(
             consts.SEARCH_ADVERTS,
             headers=consts.USER_SEGMENTATION_HEADER,
-            params={
-                'size': size,
-                'cursor': cursor
-            }
+            params={"size": size, "cursor": cursor},
+        )
+
+    async def search_adverts(
+        self, size: int, query: str, cursor: str | None = None
+    ) -> GetAdvertByListIdResponse:
+        return await self.client.get(
+            consts.SEARCH_ADVERTS,
+            headers=consts.SEGMENTATION_HEADER_WITH_HACK,
+            params={"query": query, "size": size, "cursor": cursor},
         )

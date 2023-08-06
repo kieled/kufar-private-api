@@ -1,5 +1,5 @@
-from base.service import BaseService
-from utils.auth import auth_required
+from kufar.base.service import BaseService
+from kufar.utils.auth import auth_required
 
 from . import consts
 from .schemas import UnreadMessagesCountResponse

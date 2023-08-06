@@ -28,6 +28,8 @@ aiofiles = "^23.1.0"
 
 [tool.poetry.group.dev.dependencies]
 ruff = "^0.0.280"
+pytest = "^7.4.0"
+pytest-asyncio = "^0.21.1"
 
 [build-system]
 requires = ["poetry-core"]
@@ -35,9 +37,23 @@ build-backend = "poetry.core.masonry.api"
 
 
 [tool.ruff]
+select = [
+    "E",
+    "W",
+    "F",
+    "C",
+    "B",
+]
+ignore = [
+    "E501",
+    "B008",
+    "C901",
+    "E402", 
+    "F401", 
+    "F403"
+]
 line-length = 112
 target-version = "py311"
-ignore = ["E402", "F401", "F403"]
 
 [tool.ruff.isort]
 known-third-party = ["kufar"]

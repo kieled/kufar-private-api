@@ -2,7 +2,6 @@ from .account import *
 from .ads import *
 from .auth import *
 from .categories import *
-from .cities import *
 from .favorites import *
 from .filters import *
 from .saved import *

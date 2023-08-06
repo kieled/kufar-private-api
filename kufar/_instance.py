@@ -1,5 +1,5 @@
-from base import consts
-from packages import (
+from .base import consts
+from .packages import (
     AccountService,
     AdsService,
     AuthService,
@@ -8,9 +8,10 @@ from packages import (
     MessagingService,
     SavedService,
     UserAdsService,
+    FilterService,
 )
-from utils.requester import Requester
-from utils.state import State
+from .utils.requester import Requester
+from .utils.state import State
 
 
 class KufarApi:
@@ -25,6 +26,7 @@ class KufarApi:
     saved: SavedService
     user_ads: UserAdsService
     messaging: MessagingService
+    filters: FilterService
 
     state: State
 
@@ -40,19 +42,25 @@ class KufarApi:
         self.user_ads = UserAdsService(self._client, consts.BAPI_URL)
         self.account = AccountService(self._client, consts.API_URL)
         self.messaging = MessagingService(self._client, consts.API_URL)
+        self.filters = FilterService(self._client, consts.API_URL)
 
     def _load_tokens_from_state(self):
         if self.state.access_token is not None:
-            self._client.patch_headers({
-                "authorization": f"Bearer {self.state.access_token}",
-                "session-id": str(self.state.session_id),
-            })
+            self._client.patch_headers(
+                {
+                    "authorization": f"Bearer {self.state.access_token}",
+                    "session-id": str(self.state.session_id),
+                }
+            )
 
     async def init(self):
         if self.__inited:
             return
         await self.state.load()
         self._load_tokens_from_state()
+
+        await self.filters.get_base_filters()
+
         self.__inited = True
 
     async def authenticate(self, email: str, password: str):

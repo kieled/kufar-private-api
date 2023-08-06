@@ -1,6 +1,6 @@
-from base import BaseService
-from packages.account.schemas import GetCurrentAccountResponse
-from utils.auth import auth_required
+from kufar.base import BaseService
+from ..account.schemas import GetCurrentAccountResponse
+from kufar.utils.auth import auth_required
 
 from . import consts
 

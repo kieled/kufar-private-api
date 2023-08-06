@@ -1,9 +1,7 @@
 from . import consts
-from .schemas import (
-    GetCategoriesResponse
-)
+from .schemas import GetCategoriesResponse
 
-from base import BaseService
+from kufar.base import BaseService
 
 
 class CategoryService(BaseService):
