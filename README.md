@@ -38,7 +38,7 @@ async def test():
 
 ```
 
-### What you make with this library
+### What you can with this library
 
 ```python
 # Authenticate and save tokens in the your state and file that you specified
